@@ -18,6 +18,9 @@ public class FXMLController {
     private ResourceBundle resources;
 
     @FXML
+    private Button btnCancella;
+
+    @FXML
     private URL location;
 
     @FXML
@@ -31,22 +34,48 @@ public class FXMLController {
 
     @FXML
     private Button btnReset;
+    
+    @FXML
+    private TextField txtTempo;
+
 
     @FXML
     void doInsert(ActionEvent event) {
+    	long start,end;
+    	start=System.nanoTime();
     	elenco.addParola(txtParola.getText());
     	String s="";
     	for(String ss:elenco.getElenco())
     		s+=""+ss+"\n";
     	txtResult.setText(s);
     	txtParola.setText("");
+    	end=System.nanoTime();
+    	txtTempo.setText(""+(end-start)+" 10^-9 s");
     }
 
     @FXML
     void doReset(ActionEvent event) {
+    	long start,end;
+    	start=System.nanoTime();
     	elenco.reset();
     	txtParola.setText("");
     	txtResult.setText("");
+    	end=System.nanoTime();
+    	txtTempo.setText(""+(end-start)+" 10^-9 s");
+    }
+
+    @FXML
+    void doDelete(ActionEvent event) {
+    	long start,end;
+    	start=System.nanoTime();
+    	String s="";
+    	elenco.delete(txtParola.getText());
+    	for(String ss:elenco.getElenco())
+    		s+=""+ss+"\n";
+    	txtResult.setText(s);
+    	txtParola.setText("");
+    	end=System.nanoTime();
+    	txtTempo.setText(""+(end-start)+" 10^-9 s");
     }
 
     @FXML

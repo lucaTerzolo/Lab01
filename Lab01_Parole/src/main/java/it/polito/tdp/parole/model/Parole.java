@@ -23,5 +23,14 @@ public class Parole {
 	public void reset() {
 		parole.clear();
 	}
+	
+	public void delete(String p) {
+		List<String> paroleSenzaParola=new LinkedList<String>();
 
+		for(String s: parole)
+			if(!s.equals(p))
+				paroleSenzaParola.add(s);
+		parole.clear();
+		parole.addAll(paroleSenzaParola);
+	}
 }
