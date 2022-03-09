@@ -1,5 +1,6 @@
 package it.polito.tdp.parole.model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,15 +8,16 @@ public class Parole {
 	List<String> parole;
 	
 	public Parole() {
-			parole=new LinkedList<String>();
+			parole=new ArrayList<String>();
 	}
 	
 	public void addParola(String p) {
-		parole.add(p);
+		if(!parole.contains(p))
+			parole.add(p);
 	}
 	
 	public List<String> getElenco() {
-		List<String> paroleOrdinate=new LinkedList<String>(parole);
+		List<String> paroleOrdinate=new ArrayList<String>(parole);
 		paroleOrdinate.sort(new ComparatorOrdineAlfaberico());
 		return paroleOrdinate;
 	}
@@ -25,7 +27,7 @@ public class Parole {
 	}
 	
 	public void delete(String p) {
-		List<String> paroleSenzaParola=new LinkedList<String>();
+		List<String> paroleSenzaParola=new ArrayList<String>();
 
 		for(String s: parole)
 			if(!s.equals(p))
